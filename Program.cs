@@ -106,10 +106,12 @@ internal class Program
         string name = Console.ReadLine();
         Console.WriteLine("Enter surname");
         string surname = Console.ReadLine();
-        string query = $"insert into Testtable1(Name,Surname) values('{name}','{surname}');";
+        string query = $"insert into TestTable1(Name,Surname) values('{name}','{surname}');";
         using NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
+        var rowCount = cmd.ExecuteNonQuery();
 
-        
+        Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli yaratildi");
+
     }
 
     public static void UpdateByName(string connectionString) 
@@ -125,9 +127,11 @@ internal class Program
       
         string query = $"Update TestTable1 set name = '{name}',surname='{surname}' where name = '{oldname}";
         using NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
-        var result = cmd.ExecuteNonQuery();
-        Console.WriteLine(result);
-        
+        var rowCount = cmd.ExecuteNonQuery();
+
+        Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
+
+
     }
     public static void UpdateBySurname(string connectionString)
     {
@@ -142,8 +146,10 @@ internal class Program
         
         string query = $"Update TestTable1 set name = '{name}',surname='{surname}' where surname = '{oldsurname}";
         using NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
-        var result = cmd.ExecuteNonQuery();
-        Console.WriteLine(result);
+        var rowCount = cmd.ExecuteNonQuery();
+
+        Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
+
 
     }
     public static void UpdateById(string connectionString)
@@ -159,8 +165,10 @@ internal class Program
         int id = int.Parse(Console.ReadLine());
         string query = $"Update TestTable1 set name = '{name}',surname='{surname}' where id = '{id}";
         using NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
-        var result = cmd.ExecuteNonQuery();
-        Console.WriteLine(result);
+        var rowCount = cmd.ExecuteNonQuery();
+
+        Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
+
 
     }
     public static void GetAll(string connectionString)
@@ -253,8 +261,10 @@ internal class Program
         string Name = Console.ReadLine();
         string qre = $"Delete table form TestTable1 where name = '{Name}';";
         using NpgsqlCommand cmd = new NpgsqlCommand(qre, connection);
-        var rovconunt = cmd.ExecuteNonQuery();
-        Console.WriteLine(rovconunt);
+        var rowCount = cmd.ExecuteNonQuery();
+
+        Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
+
 
     }
     public static void DeleteById(string connectionString)
@@ -266,8 +276,9 @@ internal class Program
         int Id = int.Parse(Console.ReadLine());
         string qre = $"Delete table form TestTable1 where id = {Id};";
         using NpgsqlCommand cmd = new NpgsqlCommand(qre, connection);
-        var rovconunt = cmd.ExecuteNonQuery();
-        Console.WriteLine(rovconunt);
+        var rowCount = cmd.ExecuteNonQuery();
+
+        Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
 
     }
     public static void DeleteBySurname(string connectionString)
@@ -278,8 +289,9 @@ internal class Program
         string surname = Console.ReadLine();
         string qre = $"Delete table form TestTable1 where  surname = '{surname}';";
         using NpgsqlCommand cmd = new NpgsqlCommand(qre, connection);
-        var rovconunt = cmd.ExecuteNonQuery();
-        Console.WriteLine(rovconunt);
+        var rowCount = cmd.ExecuteNonQuery();
+
+        Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
 
     }
 
