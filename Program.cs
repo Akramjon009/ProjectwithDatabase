@@ -6,6 +6,7 @@ internal class Program
     {
         bool Check = true;
         string pgConnector ="Host=localhost;Port=5432;Database=TestDB;User Id=postgres;Password=Akramjon_09;";
+
         while (Check)
         {
             Console.WriteLine("1.Create\n2.Read\n3.Update\n4.Delete\n5.End");
@@ -96,6 +97,7 @@ internal class Program
 
     }
 
+    #region Creat
     public static void Insert(string connectionString)
     {
     
@@ -113,7 +115,10 @@ internal class Program
         Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli yaratildi");
 
     }
+    #endregion
 
+
+    #region Update
     public static void UpdateByName(string connectionString) 
     {
         using NpgsqlConnection conn = new NpgsqlConnection(connectionString);
@@ -168,9 +173,11 @@ internal class Program
         var rowCount = cmd.ExecuteNonQuery();
 
         Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
-
-
     }
+    #endregion
+
+
+    #region Read  function
     public static void GetAll(string connectionString)
     {       
 
@@ -253,6 +260,10 @@ internal class Program
             }
         }
     }
+    #endregion
+
+
+    #region Deleate function 
     public static void DeleteByName(string connectionString) 
     {
         using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
@@ -294,6 +305,5 @@ internal class Program
         Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
 
     }
-
+    #endregion
 }
-         
