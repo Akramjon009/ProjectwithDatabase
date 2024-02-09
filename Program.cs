@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using System.Dynamic;
 using System.Globalization;
 internal class Program 
 {
@@ -108,12 +109,14 @@ internal class Program
         string name = Console.ReadLine();
         Console.WriteLine("Enter surname");
         string surname = Console.ReadLine();
+
+        string q = $"insert into Cars(brand,model) values ('jdcnsd','wejckjw')";
         string query = $"insert into TestTable1(Name,Surname) values('{name}','{surname}');";
-        using NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
+        NpgsqlCommand cmd = new NpgsqlCommand(q, connection);
         var rowCount = cmd.ExecuteNonQuery();
 
         Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli yaratildi");
-
+        
     }
     #endregion
 
@@ -136,7 +139,7 @@ internal class Program
 
         Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
 
-
+        conn.Close();
     }
     public static void UpdateBySurname(string connectionString)
     {
@@ -195,6 +198,8 @@ internal class Program
             {
                 Console.WriteLine(result[0]+" " + result[1]+" " + result[2]);
             }
+
+            connection.Close();
         }
     }
     public static void GetByName(string connectionString)
@@ -215,6 +220,8 @@ internal class Program
             {
                 Console.WriteLine(result[0]+" " + result[1]+" " + result[2]);
             }
+
+            connection.Close();
         }
     }
 
@@ -236,6 +243,8 @@ internal class Program
             {
                 Console.WriteLine(result[0] + " " + result[1] + " " + result[2]);
             }
+
+            connection.Close();
         }
     }
 
@@ -258,6 +267,8 @@ internal class Program
             {
                 Console.WriteLine(result[0]);
             }
+
+            connection.Close();
         }
     }
     #endregion

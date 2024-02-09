@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Firstprojectwithdatabase", "Firstprojectwithdatabase.csproj", "{71D75BD2-02B6-4D17-BED8-C298AF9117B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstprojectwithMongodb", "..\FirstprojectwithMongodb\FirstprojectwithMongodb.csproj", "{2FD74F03-A401-48E5-B505-06D46516268B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstprojectwithMongodb", "..\FirstprojectwithMongodb\FirstprojectwithMongodb.csproj", "{2FD74F03-A401-48E5-B505-06D46516268B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstProjectwithAdonet", "..\FirstProjectwithAdonet\FirstProjectwithAdonet.csproj", "{69AE1107-3F3A-4914-B025-7B91D5DA52D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2FD74F03-A401-48E5-B505-06D46516268B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FD74F03-A401-48E5-B505-06D46516268B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FD74F03-A401-48E5-B505-06D46516268B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69AE1107-3F3A-4914-B025-7B91D5DA52D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69AE1107-3F3A-4914-B025-7B91D5DA52D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69AE1107-3F3A-4914-B025-7B91D5DA52D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69AE1107-3F3A-4914-B025-7B91D5DA52D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
