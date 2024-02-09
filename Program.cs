@@ -6,7 +6,7 @@ internal class Program
     public static void Main(string[] args) 
     {
         bool Check = true;
-        string pgConnector ="Host=localhost;Port=5432;Database=TestDB;User Id=postgres;Password=Akramjon_09;";
+        string pgConnector ="Host=localhost;Port=5432;Database=TestDB;username=postgres;Password=Akramjon_09;";
 
         while (Check)
         {
@@ -110,9 +110,8 @@ internal class Program
         Console.WriteLine("Enter surname");
         string surname = Console.ReadLine();
 
-        string q = $"insert into Cars(brand,model) values ('jdcnsd','wejckjw')";
         string query = $"insert into TestTable1(Name,Surname) values('{name}','{surname}');";
-        NpgsqlCommand cmd = new NpgsqlCommand(q, connection);
+        NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
         var rowCount = cmd.ExecuteNonQuery();
 
         Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli yaratildi");
@@ -196,7 +195,7 @@ internal class Program
             Console.WriteLine("Id\tName\tSurname");
             while (result.Read())
             {
-                Console.WriteLine(result[0]+" " + result[1]+" " + result[2]);
+                Console.WriteLine(result[0]+"\t" + result[1]+"\t" + result[2]);
             }
 
             connection.Close();
@@ -218,7 +217,7 @@ internal class Program
             Console.WriteLine("Id\tName\tSurname");
             while (result.Read())
             {
-                Console.WriteLine(result[0]+" " + result[1]+" " + result[2]);
+                Console.WriteLine(result[0]+"\t " + result[1]+"\t " + result[2]);
             }
 
             connection.Close();
@@ -241,7 +240,7 @@ internal class Program
             Console.WriteLine("Id\tName\tSurname");
             while (result.Read())
             {
-                Console.WriteLine(result[0] + " " + result[1] + " " + result[2]);
+                Console.WriteLine(result[0] + "\t" + result[1] + "\t" + result[2]);
             }
 
             connection.Close();
@@ -263,9 +262,10 @@ internal class Program
 
             var result = cmd.ExecuteReader();
 
+            Console.WriteLine("Id\tName\tSurname");
             while (result.Read())
             {
-                Console.WriteLine(result[0]);
+                Console.WriteLine(result[0] + "\t" + result[1] + "\t" + result[2]);
             }
 
             connection.Close();
