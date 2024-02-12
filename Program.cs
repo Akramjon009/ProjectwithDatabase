@@ -163,7 +163,7 @@ internal class Program
 
         using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
         {
-
+            connection.Open();
 
             Console.WriteLine("Enter table name");
             string name = Console.ReadLine();
@@ -186,7 +186,7 @@ internal class Program
 
         using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
         {
-
+            connection.Open();
             Console.WriteLine("Enter table name");
             string nametable = Console.ReadLine();
 
@@ -212,7 +212,7 @@ internal class Program
 
         using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
         {
-
+            connection.Open ();
             Console.WriteLine("Enter table name");
             string nametable = Console.ReadLine();
 
@@ -238,7 +238,7 @@ internal class Program
 
         using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
         {
-
+            connection.Open();
             Console.WriteLine("Enter table name");
             string nametable = Console.ReadLine();
 
@@ -313,7 +313,7 @@ internal class Program
     #endregion
 
 
-    public static void GetLike(string connectionString)
+      public static void GetLike(string connectionString)
     {
 
         using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
