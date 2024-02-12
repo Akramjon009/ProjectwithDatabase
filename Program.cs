@@ -1,102 +1,16 @@
 ﻿using Npgsql;
 using System.Dynamic;
 using System.Globalization;
-internal class Program 
+internal class Program
 {
-    public static void Main(string[] args) 
+    public static void Main(string[] args)
     {
         bool Check = true;
-        string pgConnector ="Host=localhost;Port=5432;Database=TestDB;username=postgres;Password=Akramjon_09;";
+        string pgConnector = "Host=localhost;Port=5432;Database=TestDB;username=postgres;Password=Akramjon_09;";
 
-        while (Check)
-        {
-            Console.WriteLine("1.Create\n2.Read\n3.Update\n4.Delete\n5.End");
-            string num = Console.ReadLine() ;
-            if (num == "1")
-            {
-                Insert(pgConnector);
-
-
-            }
-            else if (num == "2")
-            {
-                Console.WriteLine("1.Read all\n2.Read by name\n3.Read by surname\n4.Read by id");
-                if (num == "1")
-                {
-                    GetAll(pgConnector);
-                }
-                else if (num == "2")
-                {
-                    GetByName(pgConnector);
-                }
-                else if (num == "3")
-                {
-                    GetBySurname(pgConnector);
-                }
-                else if (num == "4")
-                {
-                    GetById(pgConnector);
-                }
-                else
-                {
-                    Console.WriteLine("Folse enter correct number");
-                }
-
-            }
-            else if (num == "3")
-            {
-                Console.WriteLine("1.Update by name\n2.Update by surname\n3.Update by id");
-                if (num == "1")
-                {
-                    UpdateByName(pgConnector);
-                }
-                else if (num == "2")
-                {
-                    UpdateBySurname(pgConnector);
-                }
-                else if (num == "3")
-                {
-                    UpdateById(pgConnector);
-                }
-                else
-                {
-                    Console.WriteLine("Folse enter correct number");
-                }
-            }
-            else if (num == "4")
-            {
-                Console.WriteLine("1.Delete by name\n2.Delete by surname\n3.Delete by id");
-                if (num == "1")
-                {
-                    DeleteByName(pgConnector);
-                }
-                else if (num == "2")
-                {
-                    DeleteBySurname(pgConnector);
-                }
-                else if (num == "3")
-                {
-                    DeleteById(pgConnector);
-                }
-                else
-                {
-                    Console.WriteLine("Folse enter correct number");
-                }
-            }
-            else if (num == "5") 
-            {
-                Check = false;
-            }
-            else
-            {
-                Console.WriteLine("Folse enter correct number");
-            }
-            Console.WriteLine("Wait ...");
-            Thread.Sleep(5000);
-            Console.Clear();
-        }
 
     }
+
 
     #region Create table
 
@@ -123,7 +37,7 @@ internal class Program
     #region Insert one info 
     public static void Insert(string connectionString)
     {
-    
+
         using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
         connection.Open();
         Console.WriteLine("Enter table name");
@@ -138,7 +52,7 @@ internal class Program
         var rowCount = cmd.ExecuteNonQuery();
 
         Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli yaratildi");
-        
+
     }
     #endregion
 
@@ -177,7 +91,7 @@ internal class Program
 
 
     #region Update
-    public static void UpdateByName(string connectionString) 
+    public static void UpdateByName(string connectionString)
     {
         using NpgsqlConnection conn = new NpgsqlConnection(connectionString);
         conn.Open();
@@ -190,14 +104,14 @@ internal class Program
         string name = Console.ReadLine();
         Console.WriteLine("Enter surname");
         string surname = Console.ReadLine();
-      
+
         string query = $"Update {Tablename} set name = '{name}',surname='{surname}' where name = '{oldname}";
         using NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
         var rowCount = cmd.ExecuteNonQuery();
 
         Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
         conn.Close();
-       
+
     }
     public static void UpdateBySurname(string connectionString)
     {
@@ -211,7 +125,7 @@ internal class Program
         string name = Console.ReadLine();
         Console.WriteLine("Enter surname");
         string surname = Console.ReadLine();
-        
+
         string query = $"Update {Tablename} set name = '{name}',surname='{surname}' where surname = '{oldsurname}";
         using NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
         var rowCount = cmd.ExecuteNonQuery();
@@ -245,11 +159,11 @@ internal class Program
 
     #region Read  function
     public static void GetAll(string connectionString)
-    {       
+    {
 
         using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
         {
-            
+
 
             Console.WriteLine("Enter table name");
             string name = Console.ReadLine();
@@ -261,10 +175,10 @@ internal class Program
             Console.WriteLine("Id\tName\tSurname");
             while (result.Read())
             {
-                Console.WriteLine(result[0]+"\t" + result[1]+"\t" + result[2]);
+                Console.WriteLine(result[0] + "\t" + result[1] + "\t" + result[2]);
             }
 
- 
+
         }
     }
     public static void GetByName(string connectionString)
@@ -275,7 +189,7 @@ internal class Program
 
             Console.WriteLine("Enter table name");
             string nametable = Console.ReadLine();
-           
+
             Console.WriteLine("Enter  name");
             string name = Console.ReadLine();
             string query = $"select * from {nametable} where name = '{name}';";
@@ -286,10 +200,10 @@ internal class Program
             Console.WriteLine("Id\tName\tSurname");
             while (result.Read())
             {
-                Console.WriteLine(result[0]+"\t " + result[1]+"\t " + result[2]);
+                Console.WriteLine(result[0] + "\t " + result[1] + "\t " + result[2]);
             }
 
-          
+
         }
     }
 
@@ -298,10 +212,10 @@ internal class Program
 
         using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
         {
-            
+
             Console.WriteLine("Enter table name");
             string nametable = Console.ReadLine();
-            
+
             Console.WriteLine("Enter surname");
             string surname = Console.ReadLine();
             string query = $"select * from {nametable} where surname = '{surname}';";
@@ -315,7 +229,7 @@ internal class Program
                 Console.WriteLine(result[0] + "\t" + result[1] + "\t" + result[2]);
             }
 
-         
+
         }
     }
 
@@ -327,7 +241,7 @@ internal class Program
 
             Console.WriteLine("Enter table name");
             string nametable = Console.ReadLine();
-           
+
             Console.WriteLine("Enter Id");
             int Id = int.Parse(Console.ReadLine());
 
@@ -342,14 +256,14 @@ internal class Program
                 Console.WriteLine(result[0] + "\t" + result[1] + "\t" + result[2]);
             }
 
-          
+
         }
     }
     #endregion
 
 
     #region Deleate function 
-    public static void DeleteByName(string connectionString) 
+    public static void DeleteByName(string connectionString)
     {
         using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
         connection.Open();
@@ -362,7 +276,7 @@ internal class Program
         var rowCount = cmd.ExecuteNonQuery();
 
         Console.WriteLine(rowCount + "Shuncha row muvaffaqiyatli o'chirildi");
-        connection.Close(); 
+        connection.Close();
 
     }
     public static void DeleteById(string connectionString)
@@ -401,24 +315,24 @@ internal class Program
 
     public static void GetLike(string connectionString)
     {
-       
-            using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
-            connection.Open();
-            Console.WriteLine("Enter table name");
-            string Tablename = Console.ReadLine();
-            Console.WriteLine("Enter ");
-            string Name = Console.ReadLine();
-            string qre = $"   query = $\"select * from users where name like '{like}';";
-            using NpgsqlCommand cmd = new NpgsqlCommand(qre, connection);
-            var data = cmd.ExecuteReader();
-          
-            while (data.Read())
-            {
-                Console.WriteLine($"id = {data["id"]}\nname = {data["name"]}\nage = {data["age"]}\n");
-            }
 
-          
-            connection.Close();
+        using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+        connection.Open();
+        Console.WriteLine("Enter table name");
+        string Tablename = Console.ReadLine();
+        Console.WriteLine("Enter  Like");
+        string like = Console.ReadLine();
+        string qre = $"   query = $\"select * from users where name like '{like}';";
+        using NpgsqlCommand cmd = new NpgsqlCommand(qre, connection);
+        var data = cmd.ExecuteReader();
+
+        while (data.Read())
+        {
+            Console.WriteLine($"id = {data["id"]}\nname = {data["name"]}\nage = {data["age"]}\n");
+        }
+
+
+        connection.Close();
     }
     //10.yangi column qo'shish
     public void AddColumn(string )
@@ -505,5 +419,4 @@ internal class Program
         Console.WriteLine(command.ExecuteNonQuery());
         Close();
     }
-
 }
