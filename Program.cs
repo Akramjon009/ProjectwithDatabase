@@ -276,7 +276,7 @@ internal class Program
             Console.WriteLine("Enter table name");
             string nametable = Console.ReadLine();
            
-            Console.WriteLine("Enter name");
+            Console.WriteLine("Enter  name");
             string name = Console.ReadLine();
             string query = $"select * from {nametable} where name = '{name}';";
             using NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
@@ -397,4 +397,113 @@ internal class Program
         connection.Close();
     }
     #endregion
+
+
+    public static void GetLike(string connectionString)
+    {
+       
+            using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+            connection.Open();
+            Console.WriteLine("Enter table name");
+            string Tablename = Console.ReadLine();
+            Console.WriteLine("Enter ");
+            string Name = Console.ReadLine();
+            string qre = $"   query = $\"select * from users where name like '{like}';";
+            using NpgsqlCommand cmd = new NpgsqlCommand(qre, connection);
+            var data = cmd.ExecuteReader();
+          
+            while (data.Read())
+            {
+                Console.WriteLine($"id = {data["id"]}\nname = {data["name"]}\nage = {data["age"]}\n");
+            }
+
+          
+            connection.Close();
+    }
+    //10.yangi column qo'shish
+    public void AddColumn(string )
+    {
+        Open();
+        query = $"alter table {tableName} add column {columnNameWithType}";
+        command = new NpgsqlCommand(query, connection);
+        Console.WriteLine(command.ExecuteNonQuery());
+        Close();
+    }
+    //11.yangi colummni default qiymati bilan qo'shish
+    public void AddColumnDefault(string tableName, string columnName, string type, string defaultValue)
+    {
+        Open();
+        query = $"alter table {tableName} add column {columnName} {type} default {defaultValue}";
+        command = new NpgsqlCommand(query, connection);
+        Console.WriteLine(command.ExecuteNonQuery());
+        Close();
+    }
+    //12.columnni nomini update qilish
+    public void UpdateColumn(string tableName, string columnName, string newColumnName)
+    {
+        Open();
+        query = $"alter table {tableName} rename column {columnName} to {newColumnName}";
+        command = new NpgsqlCommand(query, connection);
+        Console.WriteLine(command.ExecuteNonQuery());
+        Close();
+    }
+    //13.Tableni nomini update qilish.
+    public void UpdateTable(string tableName, string newTableName)
+    {
+        Open();
+        query = $"alter table {tableName} rename to {newTableName}";
+        command = new NpgsqlCommand(query, connection);
+        Console.WriteLine(command.ExecuteNonQuery());
+        Close();
+    }
+    //14.Yo'g' database bor silar shu yangitdan yaratishilar kerak va uni ichiga 3 dona table yaratamiz.
+    public void CreateDatabase(string databaseName, params string[] tableNames)
+    {
+        Open();
+        query = $"create database if not exists {databaseName}\nuse {databaseName}\ncreate table if not exists ";
+        foreach (var item in tableNames)
+        {
+            query += $"{item} (id serial primary key, name varchar(50), age int),";
+        }
+        command = new NpgsqlCommand(query, connection);
+        Console.WriteLine(command.ExecuteNonQuery());
+        Close();
+    }
+    //15.Truncate qilish.
+    public void Truncate(string tableName)
+    {
+        Open();
+        query = $"truncate {tableName}";
+        command = new NpgsqlCommand(query, connection);
+        Console.WriteLine(command.ExecuteNonQuery());
+        Close();
+    }
+    //16.Join qilib ko'rish. 2 ta tableni join qilib ko'rish.
+    public void Join(string tableName, string secondTableName, string column1, string column2)
+    {
+        Open();
+        query = $"select * from {tableName} join {secondTableName} on {tableName}.{column1} = {secondTableName}.{column2}";
+        command = new NpgsqlCommand(query, connection);
+        var data = command.ExecuteReader();
+        while (data.Read())
+        {
+            Console.WriteLine($"id = {data["id"]}\nname = {data["name"]}\nage = {data["age"]}\n");
+        }
+        Close();
+    }
+    //17.Index qo'shamiz.
+    public void Index(string tableName, params string[] columns)
+    {
+        Open();
+        query = $"create index on {tableName} (";
+        foreach (var item in columns)
+        {
+            query += $"{item},";
+        }
+        query += query.Remove(query.Length - 1) + ")";
+        command = new NpgsqlCommand(query, connection);
+        Console.WriteLine(command.ExecuteNonQuery());
+        Close();
+    }
+
 }
